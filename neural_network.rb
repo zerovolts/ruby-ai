@@ -34,12 +34,13 @@ class NeuralNetwork
     @node_layers.last
   end
 
-  def compute
+  def compute(inputs=@node_layers[0])
+    @node_layers[0] = inputs
     @weight_layers.map.with_index do |weight_layer, index|
       @node_layers[index + 1] = weight_layer.calculate(@node_layers[index])
     end
 
-    self
+    outputs
   end
 
   private

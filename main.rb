@@ -7,5 +7,4 @@ ann2 = NeuralNetwork.new([
   [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 ])
 
-ann.inputs = [2.3, 5.2, 8.1]
-print ann.compute.node_layers
+print ann.compute([2.3, 5.2, 8.1])
