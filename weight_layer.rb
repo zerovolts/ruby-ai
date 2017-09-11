@@ -1,9 +1,10 @@
-require "pry"
+require_relative "transfer_functions"
 
 class WeightLayer
   attr_reader :weight_groups
 
-  def initialize(weight_groups)
+  def initialize(weight_groups, transfer_function_sym = :sigmoid)
+    @transfer_function = TransferFunctions.method(transfer_function_sym)
     @weight_groups = weight_groups
   end
 
@@ -17,5 +18,9 @@ class WeightLayer
         input_nodes[weight_index] * weight
       end.reduce(:+) / input_nodes.length.to_f
     end
+  end
+
+  def transfer_function(x)
+    @transfer_function.call(x)
   end
 end
